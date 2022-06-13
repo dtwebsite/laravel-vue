@@ -64,12 +64,17 @@
                                     dense
                                     outlined
                                 ></v-text-field>
+                                <v-row>
+                                    <v-col cols="12">
+                                        <v-img height="55px" :src="captchaImg" @click="captchaGet" style="cursor:pointer;"></v-img>
+                                    </v-col>
+                                </v-row>
                                 <v-divider></v-divider>
                                 <v-btn
                                     block
                                     class="mt-4"
-                                    color="rgb(65, 184, 131)"
-                                    @click="sumbit"
+                                    color="#3eaf7c"
+                                    @click="submit"
                                 >
                                     登入
                                 </v-btn>
@@ -89,16 +94,44 @@
 
 <script>
 import FooterComp from '@/components/layouts/FooterComp.vue'
-import { validationMixin } from 'vuelidate'
-import { required, email } from 'vuelidate/lib/validators'
 
 export default {
     components: { FooterComp },
-    mixins: [validationMixin],
-    validations: {
-        email: { required, email },
-        password: { required },
-        captcha: { required },
+    data: () => ({
+        valid: true,
+        email: '',
+        emailRules: [
+            v => !!v || '請填寫信箱',
+            v => /.+@.+\..+/.test(v) || '請符合信箱格式',
+        ],
+        password: '',
+        passwordRules: [
+            v => !!v || '請填寫密碼',
+        ],
+        captcha: '',
+        captchaRules: [
+            v => !!v || '請填寫驗證碼',
+        ],
+        captchaImg: '',
+    }),
+    created() {
+        // this.captchaGet();
     },
+    methods: {
+        captchaGet() {
+            console.log(1);
+    //         captcha().then(response => {
+    //             this.captchaImg = response.img;
+    //         }).catch(error => {
+    //             console.error(error);
+    //         })
+        },
+        submit() {
+            console.log(2);
+            // if (this.$refs.form.validate()) {
+
+            // }
+        }
+    }
 }
 </script>

@@ -4,7 +4,7 @@
             class="text-right text--secondary"
             cols="12"
         >
-            <strong class="primary--text">DTwebsite</strong> © {{ new Date().getFullYear() }}
+            <strong class="teal--text">DTwebsite</strong> © {{ new Date().getFullYear() }}
         </v-col>
     </v-footer>
 </template>
